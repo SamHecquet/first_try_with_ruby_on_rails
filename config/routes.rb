@@ -14,9 +14,16 @@ Rails.application.routes.draw do
   # chefs
   resources :chefs, except: [:new]
   
+  # Authentication
   get '/register', to: 'chefs#new'
   get '/login', to: 'logins#new'
   post '/login', to: 'logins#create'
   get '/logout', to: 'logins#destroy'
+  
+  # styles
+  resources :styles, only: [:new, :create, :show]
+  
+  # ingredients
+  resources :ingredients, only: [:new, :create, :show]
   
 end
