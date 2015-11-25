@@ -31,6 +31,15 @@
         <p>Ingredients: <%= render recipe.ingredients %></p>
       <% end %>
       <p>
+        <span class="quiet"><small>
+          <% if recipe.reviews.any? %>
+            <%= link_to "read " + pluralize(recipe.reviews.count, 'review'), recipe_path(recipe, anchor: "reviews")  %>
+          <% else %>
+            No reviews yet
+          <% end %>
+          </small></span>
+      </p>
+      <p>
         <span class="quiet"><small>created: <%= time_ago_in_words(recipe.created_at) %> ago</small></span>
         <span class="quiet"><small>updated: <%= time_ago_in_words(recipe.updated_at) %> ago</small></span>
       </p>

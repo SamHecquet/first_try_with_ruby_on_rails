@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   
   # recipes
   resources :recipes do
+    resources :reviews, only: [:new, :create, :destroy]
     member do
       post 'like'
     end
@@ -14,7 +15,7 @@ Rails.application.routes.draw do
   # chefs
   resources :chefs, except: [:new, :destroy]
   
-  # Authentication
+  # authentication
   get '/register', to: 'chefs#new'
   get '/login', to: 'logins#new'
   post '/login', to: 'logins#create'

@@ -83,7 +83,14 @@ h2 {
 }
 
 .well {
-  background-color: #ref;
+  background-color: #eaeaea;
+}
+
+.review {
+  margin: 20px;
+  .glyphicon-remove {
+    color : red;
+  }
 }
 
 input, textarea, select, .uneditable-input {

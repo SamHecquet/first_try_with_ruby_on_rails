@@ -4,7 +4,7 @@
   <div class="col-md-4 pull-right center">
     <%= link_to gravatar_for(@recipe.chef, size: 200), chef_path(@recipe.chef) %>
     <p>
-      <h5>merci : <%= @recipe.chef.chefname %></h5>
+      <h5>Chef: <%= @recipe.chef.chefname %></h5>
     </p>
   </div>
   <div class="col-md-8">
@@ -42,3 +42,35 @@
 </div>
 
 <h5><%= link_to "Return to list", recipes_path, class: "btn btn-warning btn-small" %></h5>
+<hr>
+
+
+<div class="row">
+  <div class="col-md-8" id="reviews">
+    <h3>Review(s)</h3>
+    <% if @recipe.reviews.any? %>
+      <% @recipe.reviews.each do |review| %>
+        <div class="review">
+          <% if logged_in? and current_user.admin? %>
+            <%= link_to recipe_review_path(@recipe, review), method: :delete, data: {confirm: "Sure?" } do %><i class="glyphicon glyphicon-remove pull-right"></i><% end %>
+          <% end %>
+          <%= review.body %>
+          <br>
+          <p class="pull-right">
+            <span class="quiet"><small><%= time_ago_in_words(review.created_at) %> ago by <%= link_to review.chef.chefname, chef_path(review.chef), :target => "_blank" %></small></span>
+          </p>
+          <br>
+        </div>
+      <% end %>
+    <% else %>
+      <p>No reviews yet</p>
+    <% end %>
+  </div>
+  <div class="col-md-4">
+    <% if logged_in? %>
+      <%= link_to "Write a review", new_recipe_review_path(@recipe), class: "btn btn-primary btn-lg" %>
+    <% else %>
+     <%= link_to "Sign in", login_path, class: "btn btn-primary btn-small" %> or <%= link_to "Sign up", register_path, class: "btn btn-primary btn-small" %> to submit a review.
+    <% end %>
+  </div>
+</div>

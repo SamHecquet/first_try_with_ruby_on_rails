@@ -1,0 +1,10 @@
+<%= render 'shared/page_title', title: 'Review for recipe "' + @recipe.name + '"' %>
+
+<%= render 'shared/errors', obj: @review %>
+
+<%= form_for ([@recipe, @review]) do |new_review| %>
+  <%= new_review.text_area :body, rows: 10, placeholder: 'Your comment...' %>
+  <%= new_review.submit('Create', class: "btn btn-primary btn-lg") %>
+<% end %>
+
+<h5><%= link_to "Back to the recipe", recipe_path(@recipe), class: "btn btn-warning btn-small" %></h5>
