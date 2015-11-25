@@ -1,6 +1,6 @@
 class ReviewsController < ApplicationController  
   before_action :require_user
-  before_action :set_recipe
+  before_action :set_current_recipe
   
   def new
     @review = Review.new
@@ -25,4 +25,8 @@ class ReviewsController < ApplicationController
     redirect_to recipe_path(@recipe)
   end
 
+  private
+    def set_current_recipe
+      @recipe = Recipe.find_by_id(params[:recipe_id]) or not_found
+    end
 end
