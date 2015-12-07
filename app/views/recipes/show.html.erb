@@ -8,10 +8,10 @@
     </p>
   </div>
   <div class="col-md-8">
-    <% if logged_in? and (@recipe.chef == current_user || current_user.admin?) %>
+    <% if logged_in? and (@recipe.chef == current_user || current_user.is_admin?) %>
       <%= link_to "Edit recipe", edit_recipe_path(@recipe), class: "btn btn-success pull-right" %>
     <% end %>
-    <% if logged_in? and current_user.admin? %>
+    <% if logged_in? and current_user.is_admin? %>
       <%= link_to "Delete", @recipe, method: :delete, data: {confirm: "Sure?" }, class: "btn btn-danger pull-right" %>
     <% end %>
     <h3><%= simple_format(@recipe.summary) %></h3>
@@ -51,7 +51,7 @@
     <% if @recipe.reviews.any? %>
       <% @recipe.reviews.each do |review| %>
         <div class="review">
-          <% if logged_in? and current_user.admin? %>
+          <% if logged_in? and current_user.is_admin? %>
             <%= link_to recipe_review_path(@recipe, review), method: :delete, data: {confirm: "Sure?" } do %><i class="glyphicon glyphicon-remove pull-right"></i><% end %>
           <% end %>
           <%= review.body %>

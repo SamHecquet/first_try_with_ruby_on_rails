@@ -17,7 +17,7 @@ class ReviewsController < ApplicationController
   end
   
   def destroy
-    if !current_user.admin?
+    if !current_user.is_admin?
       redirect_to recipe_path(@recipe)
     end
     Review.find(params[:id]).destroy
@@ -26,7 +26,8 @@ class ReviewsController < ApplicationController
   end
 
   private
-    def set_current_recipe
-      @recipe = Recipe.find_by_id(params[:recipe_id]) or not_found
-    end
+  
+  def set_current_recipe
+    @recipe = Recipe.find_by_id(params[:recipe_id]) or not_found
+  end
 end

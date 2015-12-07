@@ -66,7 +66,7 @@ class RecipesController < ApplicationController
     end
     
     def require_same_user
-      if current_user != @recipe.chef && !current_user.admin?
+      if current_user != @recipe.chef && !current_user.is_admin?
         flash[:danger] = "You can only edit your own recipes"
         redirect_to recipes_path
       end
@@ -80,6 +80,6 @@ class RecipesController < ApplicationController
     end
     
     def admin_user
-      redirect_to recipes_path unless current_user.admin?
+      redirect_to recipes_path unless current_user.is_admin?
     end
 end

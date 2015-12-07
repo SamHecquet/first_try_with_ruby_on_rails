@@ -41,19 +41,19 @@ class ChefsController < ApplicationController
   
   private
   
-    def chef_params
-      params.require(:chef).permit(:chefname, :email, :password)
+  def chef_params
+    params.require(:chef).permit(:chefname, :email, :password)
+  end
+  
+  def set_chef
+    @chef = Chef.find(params[:id])
+  end
+  
+  def require_same_user
+    if current_user != @chef
+      flash[:danger] = "You can only edit your own profile"
+      redirect_to root_path
     end
-    
-    def set_chef
-      @chef = Chef.find(params[:id])
-    end
-    
-    def require_same_user
-      if current_user != @chef
-        flash[:danger] = "You can only edit your own profile"
-        redirect_to root_path
-      end
-    end
+  end
   
 end
