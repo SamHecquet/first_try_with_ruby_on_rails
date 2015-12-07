@@ -1,3 +1,17 @@
+# == Schema Information
+#
+# Table name: recipes
+#
+#  id          :integer          not null, primary key
+#  name        :string
+#  summary     :text
+#  description :text
+#  created_at  :datetime
+#  updated_at  :datetime
+#  chef_id     :integer
+#  picture     :string
+#
+
 class Recipe < ActiveRecord::Base
   belongs_to :chef
   has_many :likes, dependent: :destroy
