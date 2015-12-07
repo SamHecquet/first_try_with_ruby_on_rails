@@ -1,3 +1,11 @@
+# == Schema Information
+#
+# Table name: ingredients
+#
+#  id   :integer          not null, primary key
+#  name :string
+#
+
 require 'test_helper'
 
 class IngredientTest < ActiveSupport::TestCase

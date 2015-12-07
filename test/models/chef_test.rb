@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: chefs
+#
+#  id              :integer          not null, primary key
+#  chefname        :string
+#  email           :string
+#  created_at      :datetime
+#  updated_at      :datetime
+#  password_digest :string
+#  admin           :boolean          default(FALSE)
+#
+
 require 'test_helper'
 
 class ChefTest < ActiveSupport::TestCase

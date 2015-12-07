@@ -1,3 +1,12 @@
+# == Schema Information
+#
+# Table name: recipe_styles
+#
+#  id        :integer          not null, primary key
+#  style_id  :integer
+#  recipe_id :integer
+#
+
 require 'test_helper'
 
 class RecipeStyleTest < ActiveSupport::TestCase
