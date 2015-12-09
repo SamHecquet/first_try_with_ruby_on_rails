@@ -1,4 +1,5 @@
 class ChefsController < ApplicationController
+  include ApplicationHelper
   before_action :set_chef, only: [:edit, :update, :show]
   before_action :require_same_user, only: [:edit, :update]
   
@@ -7,15 +8,16 @@ class ChefsController < ApplicationController
   end
   
   def new
+    redirect_to recipes_path if logged_in?
     @chef = Chef.new
   end
   
   def create
+    redirect_to recipes_path if logged_in?
     @chef = Chef.new(chef_params)
     if @chef.save
       flash[:success] = "Account created"
-      # log chef
-      session[:chef_id] = @chef.id
+      sign_in @chef
       redirect_to chef_path(@chef)
     else
       render 'new'

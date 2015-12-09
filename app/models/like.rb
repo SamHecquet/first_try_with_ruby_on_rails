@@ -14,5 +14,7 @@ class Like < ActiveRecord::Base
   belongs_to :chef
   belongs_to :recipe
   
-  validates_uniqueness_of :chef, scope: :recipe
+  validates_uniqueness_of :chef_id, scope: :recipe_id
+  validates :chef_id, presence: true
+  validates :recipe_id, presence: true
 end
