@@ -13,6 +13,13 @@ FactoryGirl.define do
     admin false 
   end
   
+  factory :third_chef, :class => Chef do
+    chefname 'Jean Luc'
+    email  'toto@tata.com'
+    password 'password'
+    admin false 
+  end
+  
   factory :admin, :class => Chef do
     chefname 'Admin'
     email  'admin@toto.com'
