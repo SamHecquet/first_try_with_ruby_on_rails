@@ -24,6 +24,12 @@ RSpec.configure do |config|
   config.mock_with :rspec
   
   config.include FactoryGirl::Syntax::Methods
+  
+  config.after(:all) do
+    if Rails.env.test? 
+      FileUtils.rm_rf(Dir["#{Rails.root}/spec/support/uploads/*"])
+    end 
+  end 
 end
 
 ActiveRecord::Migration.maintain_test_schema!
